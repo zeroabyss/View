@@ -11,7 +11,7 @@ import android.graphics.Typeface;
 import android.view.View;
 
 /**
- * <p>功能简述：
+ * <p>功能简述：简单的使用Canvas和Paint
  * <p>Created by Aiy on 2017/8/17.
  */
 
@@ -39,8 +39,7 @@ public class Canvas_Paint extends View {
         Lint会报出Avoid object allocations during draw/layout operations
         (preallocate and reuse instead)*/
 
-        // canvasPath(canvas);
-        paintTextSetting(canvas);
+        canvasPath(canvas);
     }
     private void canvasBase(Canvas canvas){
         //设置颜色
@@ -144,40 +143,5 @@ public class Canvas_Paint extends View {
         canvas.drawPath(path1,paint);
     }
 
-    /**
-     * 方法简述： paint与文字相关的一些设置
-     */
-    public void paintTextSetting(Canvas canvas){
-        paint.reset();
 
-        //设置画笔宽度
-        paint.setStrokeWidth(5);
-        //画笔填充风格
-        paint.setStyle(Paint.Style.FILL);
-        //抗锯齿
-        paint.setAntiAlias(true);
-        //设置文本大小
-        paint.setTextSize(40);
-        //设置文本对齐方式 注：最好是不要设置，不然文字可能无法完全显示
-        // paint.setTextAlign(Paint.Align.CENTER);
-        //是否为粗体
-        paint.setFakeBoldText(true);
-        //是否有下划线
-        paint.setUnderlineText(true);
-        //设置字体的水平倾斜度，一般都是-0.25
-        paint.setTextSkewX((float)-0.25);
-        //删除线
-        paint.setStrikeThruText(true);
-        //水平拉伸
-        paint.setTextScaleX(2);
-
-        //绘制文字中有个构造函数是charSequence,但是这里却不支持Span
-        canvas.drawText("sd范德萨范德萨ahuiahi",20,50,paint);
-
-        //Typeface是样式，可以从系统样式获取也可以从文件或者别的typeface copy过来
-        Typeface tf=Typeface.create("宋体",Typeface.NORMAL);
-        paint.setTypeface(tf);
-        AssetManager am=context.getAssets();
-//      Typeface tf1=Typeface.createFromAsset(am,"fonts/jian_luobo.ttf");
-    }
 }

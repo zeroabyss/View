@@ -1,5 +1,4 @@
 package com.example.aiy.view;
-
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +8,10 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
+/**
+ *任务描述： 主界面，将View加入屏幕中.
+ *创建时间： 2017/8/28 20:33
+ */
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     @Override
@@ -16,6 +19,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FrameLayout frameLayout= (FrameLayout) findViewById(R.id.main_layout);
-        frameLayout.addView(new Canvas_Region(this));
+        frameLayout.addView(new Canvas_drawText(this));
     }
 }
