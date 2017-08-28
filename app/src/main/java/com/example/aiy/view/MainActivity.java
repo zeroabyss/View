@@ -16,6 +16,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FrameLayout frameLayout= (FrameLayout) findViewById(R.id.main_layout);
-        frameLayout.addView(new Canvas_Paint(this));
+        frameLayout.addView(new Canvas_Region(this));
     }
 }

@@ -178,6 +178,6 @@ public class Canvas_Paint extends View {
         Typeface tf=Typeface.create("宋体",Typeface.NORMAL);
         paint.setTypeface(tf);
         AssetManager am=context.getAssets();
-        Typeface tf1=Typeface.createFromAsset(am,"fonts/jian_luobo.ttf");
+//      Typeface tf1=Typeface.createFromAsset(am,"fonts/jian_luobo.ttf");
     }
 }
