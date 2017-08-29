@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.CornerPathEffect;
+import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
@@ -142,6 +144,28 @@ public class Canvas_Paint extends View {
         path1.addRect(70,405,80,600, Path.Direction.CW);
         canvas.drawPath(path1,paint);
     }
+    /**
+     * 方法简述： 设置线帽，看stroke_cap.png 笔帽是添加在原本区域上的，所以会使得区域变大.
+     * @param cap 线帽的enum
+     */
+    private void strokeCap(Canvas canvas,Paint.Cap cap){
+        paint.setStrokeCap(cap);
+        canvas.drawLine(100,200,300,400,paint);
+    }
+    /**
+     * 方法简述： paint另一些应用.
+     */
+    private void paint_setting(Canvas canvas){
+        //设置拐角,效果见path_effect.png 把直线拐角变成圆形拐角
+        //参数是CornerPathEffect（float radius）,内接圆所以半径越大的话拐角弧度就越大.
+        paint.setPathEffect(new CornerPathEffect(100));
 
+        //虚线的交替数组，单数为实线长度，偶数为虚线长度，然后就这样队列循环.
+        float[] intervals={10,20,20,20};
+        //开始的偏移量，从偏移量之后开始交替画虚线，所以通过偏移量可以设置动画使得线段可以流动效果
+        int phase=20;
+        paint.setPathEffect(new DashPathEffect(intervals,phase));
+
+    }
 
 }
