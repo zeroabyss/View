@@ -17,6 +17,8 @@ import android.widget.Switch;
 public class Gesture_View extends View {
     private Path path;
     private Paint paint;
+
+    private float preX,preY;
     public Gesture_View(Context context) {
         super(context);
         path=new Path();
@@ -37,12 +39,25 @@ public class Gesture_View extends View {
     public boolean onTouchEvent(MotionEvent event){
         switch (event.getAction()){
             case MotionEvent.ACTION_DOWN:
+                /*path.moveTo(event.getX(),event.getY());*/
                 path.moveTo(event.getX(),event.getY());
+                preX=event.getX();
+                preY=event.getY();
                 return true;
             case MotionEvent.ACTION_MOVE:
-                path.lineTo(event.getX(),event.getY());
-                postInvalidate();
+                /*path.lineTo(event.getX(),event.getY());
+                postInvalidate();*/
+                float endX= (preX+event.getX())/2;
+                float endY=(preY+event.getY())/2;
+                path.quadTo(preX,preY,endX,endY);
+                preX=event.getX();
+                preY=event.getY();
+                invalidate();
                 break;
+            case MotionEvent.ACTION_UP:
+                /*path.reset();
+                invalidate();
+                break;*/
             default:
                 break;
         }
