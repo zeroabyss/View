@@ -165,7 +165,6 @@ public class Canvas_Paint extends View {
         //开始的偏移量，从偏移量之后开始交替画虚线，所以通过偏移量可以设置动画使得线段可以流动效果
         int phase=20;
         paint.setPathEffect(new DashPathEffect(intervals,phase));
-
     }
 
 }
