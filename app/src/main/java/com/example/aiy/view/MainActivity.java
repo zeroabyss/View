@@ -17,8 +17,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        FrameLayout frameLayout= (FrameLayout) findViewById(R.id.main_layout);
-        frameLayout.addView(new Gesture_View(this));
+        setContentView(R.layout.my_viewgroup);
+        /*FrameLayout frameLayout= (FrameLayout) findViewById(R.id.main_layout);
+        frameLayout.addView(new Gesture_View(this));*/
     }
 }

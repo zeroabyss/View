@@ -1,6 +1,8 @@
 package com.example.aiy.view;
 
 import android.content.Context;
+import android.text.Layout;
+import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -12,6 +14,23 @@ import android.view.ViewGroup;
 public class MyBaseViewGroup extends ViewGroup {
     public MyBaseViewGroup(Context context) {
         super(context);
+    }
+
+
+
+    @Override
+    protected LayoutParams generateLayoutParams(LayoutParams p) {
+        return new MarginLayoutParams(p);
+    }
+
+    @Override
+    public LayoutParams generateLayoutParams(AttributeSet attrs) {
+        return new MarginLayoutParams(getContext(),attrs);
+    }
+
+    @Override
+    protected LayoutParams generateDefaultLayoutParams() {
+        return new MarginLayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
     }
 
     @Override
@@ -27,8 +46,9 @@ public class MyBaseViewGroup extends ViewGroup {
         for (int i=0;i<getChildCount();i++){
             View child=getChildAt(i);
             measureChild(child,widthMeasureSpec,heightMeasureSpec);
-            int h=child.getMeasuredHeight();
-            int w=child.getMeasuredWidth();
+            MarginLayoutParams params=(MarginLayoutParams)child.getLayoutParams();
+            int h=child.getMeasuredHeight()+params.topMargin+params.bottomMargin;
+            int w=child.getMeasuredWidth()+params.leftMargin+params.rightMargin;
             height+=h;
             width=Math.max(width,w);
         }
@@ -38,6 +58,15 @@ public class MyBaseViewGroup extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-
+        int top=0;
+        int count=getChildCount();
+        for (int i=0;i<count;i++){
+            View child=getChildAt(i);
+            MarginLayoutParams params= (MarginLayoutParams) child.getLayoutParams();
+            int childHeight=child.getMeasuredHeight();
+            int childWidth=child.getMeasuredWidth();
+            child.layout(params.leftMargin,top+params.topMargin,childWidth+params.leftMargin,top+childHeight+params.topMargin);
+            top+=(childHeight+params.topMargin+params.bottomMargin);
+        }
     }
 }
