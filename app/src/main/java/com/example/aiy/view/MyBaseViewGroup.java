@@ -12,11 +12,10 @@ import android.view.ViewGroup;
  */
 
 public class MyBaseViewGroup extends ViewGroup {
-    public MyBaseViewGroup(Context context) {
-        super(context);
+
+    public MyBaseViewGroup(Context context, AttributeSet attrs) {
+        super(context, attrs);
     }
-
-
 
     @Override
     protected LayoutParams generateLayoutParams(LayoutParams p) {
